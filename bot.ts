@@ -5,14 +5,15 @@ import {
     type ConversationFlavor,
     conversations,
   } from "@grammyjs/conversations";
-import { main } from "./composer/main";
+import { main } from "@composer/main";
+import { normalize } from "path";
 
 
 interface SessionData {
     filename: string
 }
 
-export const FOLDER_OF_FILES = `${__dirname}/output`
+export const FOLDER_OF_FILES = normalize(`${__dirname}/output`)
 
 
 export type BotContext = FileFlavor<Context> &  SessionFlavor<SessionData> & ConversationFlavor;

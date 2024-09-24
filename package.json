@@ -1,17 +1,18 @@
 {
   "devDependencies": {
     "@types/node": "^22.5.5",
-    "tsconfig-paths": "^4.2.0",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.6.2"
   },
   "scripts": {
-    "compile": "npx tsc",
-    "start": "node -r tsconfig-paths/register ./dist/src/bot.js"
+    "compile": "tsc && tsc-alias",
+    "start": "node ./build/bot.js"
   },
   "dependencies": {
     "@grammyjs/conversations": "^1.2.0",
     "@grammyjs/files": "^1.1.1",
     "grammy": "^1.30.0",
-    "node-xlsx": "^0.24.0"
+    "node-xlsx": "^0.24.0",
+    "upath": "^2.0.1"
   }
 }
