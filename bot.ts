@@ -1,12 +1,14 @@
 
 import { Bot, Context, SessionFlavor, session, Keyboard  } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
+
 import {
     type ConversationFlavor,
     conversations,
   } from "@grammyjs/conversations";
 import { main } from "@composer/main";
 import { normalize } from "path";
+import { existsSync, mkdirSync } from "fs";
 
 
 interface SessionData {
@@ -27,12 +29,12 @@ export const bot = new Bot<BotContext>("7555105440:AAFMyLTy4QFUSPN4F8aOBO-xcw5FL
 
 // Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
-bot.use(session({ initial, }));
+bot.use(session({ initial }));
 bot.use(conversations())
 bot.use(main)
   
 
-const keyboard = new Keyboard()
+export const keyboard = new Keyboard()
 .text(COMMANDS.DOWNLOAD_FILE).row()
 .text(COMMANDS.UPLOAD_FILE).row()
 .text(COMMANDS.GET_FILE_NAME).row()
@@ -41,6 +43,9 @@ const keyboard = new Keyboard()
 
 // Handle the /start command.
 bot.command("start", async (ctx) => {    
+    if (!existsSync(FOLDER_OF_FILES)) {
+      mkdirSync(FOLDER_OF_FILES, { recursive: true });
+    }
     return ctx.reply(`Приветствую, ${ctx.message?.from.username}`,{
         reply_markup: keyboard
     })

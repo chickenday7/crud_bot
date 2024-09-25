@@ -1,15 +1,13 @@
-import { Conversation } from "@grammyjs/conversations";
 import { BotContext, FOLDER_OF_FILES } from "@root/bot";
+import { BotConversation } from "@scenes/type";
 
 
 
-type MyConversation = Conversation<BotContext>;
 
-async function fileLoad(conversation: MyConversation, ctx: BotContext) {
+
+async function fileLoad(conversation: BotConversation, ctx: BotContext) {
     let responseMessage = ""
     await ctx.reply("Загрузите файл")
-    
-  
     
     try {
         ctx = await conversation.waitFor(":document")
@@ -28,12 +26,12 @@ async function fileLoad(conversation: MyConversation, ctx: BotContext) {
         
         
         responseMessage = `Файл ${fileName} успешно загружен!`
-        ctx.session.filename = fileName;
+        conversation.session.filename = fileName;
     } catch (error) {
         if(error instanceof Error){
             responseMessage = error.message ||  "Что-то пошло не так, загрузите другой файл или обратитесь к разработчику"
         }       
-        console.log(error)
+        
     }
     return ctx.reply(responseMessage);
     
