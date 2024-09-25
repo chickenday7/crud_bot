@@ -1,7 +1,8 @@
+import { config } from 'dotenv';
 
 import { Bot, Context, SessionFlavor, session, Keyboard  } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
-
+import "dotenv/config"
 import {
     type ConversationFlavor,
     conversations,
@@ -15,6 +16,8 @@ interface SessionData {
     filename: string
 }
 
+config();
+
 export const FOLDER_OF_FILES = normalize(`${__dirname}/output`)
 
 
@@ -24,8 +27,9 @@ function initial(): SessionData {
     return { filename: "" };
   }
 
+  
 // Create a bot.
-export const bot = new Bot<BotContext>("7555105440:AAFMyLTy4QFUSPN4F8aOBO-xcw5FLPfKRPA");
+export const bot = new Bot<BotContext>(process.env.BOT_TOKEN);
 
 // Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));

@@ -1,8 +1,7 @@
 import { BotContext, FOLDER_OF_FILES, keyboard} from "@root/bot";
 import { BotConversation } from "@scenes/type";
-import { readFile, unlinkSync } from "fs";
+import {  unlinkSync } from "fs";
 import { writeFile } from "fs/promises";
-import { InputFile } from "grammy";
 import { build, parse } from "node-xlsx"
 import { normalize } from "path";
 

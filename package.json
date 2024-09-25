@@ -11,6 +11,7 @@
   "dependencies": {
     "@grammyjs/conversations": "^1.2.0",
     "@grammyjs/files": "^1.1.1",
+    "dotenv": "^16.4.5",
     "grammy": "^1.30.0",
     "node-xlsx": "^0.24.0",
     "upath": "^2.0.1"

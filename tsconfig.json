@@ -14,6 +14,6 @@
     "strict": true,                                      
     "skipLibCheck": true                          
   },
-  "include": ["src/**/*", "bot.ts"],
+  "include": ["src/**/*", "node.augmentations.d.ts", "bot.ts"],
   "exclude": ["node_modules"]
 }
